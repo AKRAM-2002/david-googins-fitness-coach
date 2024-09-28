@@ -3,9 +3,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 
 // export default clerkMiddleware();
-const isProtedRoutes = createRouteMatcher([
-  ''
-])
+const isProtedRoutes = createRouteMatcher([])
 
 export default clerkMiddleware((auth, req) =>{
   if (isProtedRoutes(req)) auth().protect()

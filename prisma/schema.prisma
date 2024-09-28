@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+enum crdb_internal_region {
+  gcp_us_east1 @map("gcp-us-east1")
+}
+
+
+datasource db {
+  provider     = "cockroachdb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Assistant {
+  id          String @id @default(uuid())
+  assistantId String @unique
+}
+
+model UserThread {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  threadId  String
+  createdAt DateTime @default(now())
+}
+
+// model ChallengePreferences {
+//   id                String   @id @default(uuid())
+//   userId            String   @unique
+//   challengeId       String
+//   sendNotifications Boolean  @default(true)
+//   createdAt         DateTime @default(now())
+//   updatedAt         DateTime @updatedAt
+// }
+

@@ -1,10 +1,9 @@
 'use client'
-
 import React from 'react';
+import { UserCircle } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { UserButton } from "@clerk/nextjs";
-import { UserCircle } from 'lucide-react';
+import { UserButton } from '@clerk/nextjs';
 
 const routes = [
     {
@@ -42,7 +41,7 @@ const Navbar = () => {
             </div>
 
             {/* Routes */}
-            <ul className="flex space-x-6">
+            <ul className="flex space-x-6 items-center">
                 {routes.map((route) => (
                     <li key={route.path}>
                         <Link href={route.path}>
@@ -58,15 +57,15 @@ const Navbar = () => {
                 ))}
             </ul>
 
-            {/* Custom styled Clerk UserButton */}
+            {/* User button */}
             <UserButton 
-                afterSwitchSessionUrl='/'
+                afterSignOutUrl="/"
                 appearance={{
                     elements: {
                         avatarBox: "w-6 h-6",
                         rootBox: "flex items-center space-x-2 bg-emerald-700 px-4 py-2 rounded-full hover:bg-emerald-600 transition-colors duration-300",
                         userPreviewMainIdentifier: "text-white",
-                        userPreviewSecondaryIdentifier: "text-emerald-200",
+                        userPreviewSecondaryIdentifier: "text-white-200",
                     },
                 }}
             >
